@@ -20,7 +20,17 @@ class TasksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  def edit
 
+    @task = Task.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: "Task not found"
+  end
+  def update
+    @task = Task.find(params[:id])
+    @task.update(task_params)
+    redirect_to @task
+  end
   private
   def task_params
     params.require(:task).permit(:title, :description, :is_done)

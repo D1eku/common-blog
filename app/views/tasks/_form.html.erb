@@ -1,0 +1,20 @@
+<%= form_with model: @task do |form| %>
+  <div>
+    <h1>
+      <%= form.label :title, "Title" %>
+      <%= form.text_field :title %>
+    </h1>
+    <p>
+      <%= form.label :description, "Description" %>
+      <%= form.text_area :description %>
+    </p>
+  </div>
+
+  <div>
+    <%= form.label :is_done, "Complete the task?" %>
+    <%= form.check_box :is_done, id: "task_completed_checkbox", class: "custom-checkbox" %>
+  </div>
+  <div>
+    <%= form.submit "Save" %>
+  </div>
+<% end %>

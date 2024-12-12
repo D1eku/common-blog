@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/tasks", to: "tasks#index", as: "tasks"
   get "/tasks/new" => "tasks#new", as: :new_task
   get "/tasks/:id" => "tasks#show", as: :task
+  patch "/tasks/:id" => "tasks#update"
+  get "/tasks/:id/edit" => "tasks#edit", as: :edit_task
   post "/tasks" => "tasks#create", as: :task_create
 
   # Defines the root path route ("/")

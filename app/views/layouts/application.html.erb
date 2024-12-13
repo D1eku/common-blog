@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'Home', root_path %>
+      <% unless current_page?(new_task_path) %>
+        <%= link_to 'Create New Task', new_task_path %>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>

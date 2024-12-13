@@ -1,9 +1,22 @@
 <h1>
-  <%= @task.title %>
+  Task Title: <%= @task.title %>
 </h1>
 <p>
-  <%= @task.description %>
+  Task Description: <%= @task.description %>
 </p>
 <p>
-  <%= @task.is_done? %>
+  Status: <%= @task.is_done? %>
 </p>
+<h2>Comments:</h2>
+<% @comments.each do |comment| %>
+  <div>
+    <h4>Author: <%= comment.creator %></h4>
+    <p>Text: <%= comment.content %></p>
+  </div>
+<% end %>
+<div>
+  <h4>
+    Add a comment:
+  </h4>
+  <%= render partial: "comments/form", locals:{ comment: @comment}  %>
+</div>

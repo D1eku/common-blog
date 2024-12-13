@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creator: MyText
+  content: MyText
+  task: one
+
+two:
+  creator: MyText
+  content: MyText
+  task: two

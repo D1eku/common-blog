@@ -1,22 +1,36 @@
-<h1>
-  Task Title: <%= @task.title %>
-</h1>
-<p>
-  Task Description: <%= @task.description %>
-</p>
-<p>
-  Status: <%= @task.is_done? %>
-</p>
-<h2>Comments:</h2>
-<% @comments.each do |comment| %>
-  <div>
-    <h4>Author: <%= comment.creator %></h4>
-    <p>Text: <%= comment.content %></p>
+<!-- Main Content -->
+<div class="container my-4">
+  <!-- Title Section -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h1 class="card-title">Task Title: <%= @task.title %></h1>
+      <p class="card-text"><strong>Description:</strong> <%= @task.description %></p>
+      <p class="card-text"><strong>Status:</strong> <%= @task.is_done? ? "Completed" : "Pending" %></p>
+    </div>
   </div>
-<% end %>
-<div>
-  <h4>
-    Add a comment:
-  </h4>
-  <%= render partial: "comments/form", locals:{ comment: @comment}  %>
+
+  <!-- Comments Section -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Comments</h2>
+    </div>
+    <ul class="list-group list-group-flush">
+      <% @comments.each do |comment| %>
+        <li class="list-group-item">
+          <h5 class="mb-1">Author: <%= comment.creator %></h5>
+          <p class="mb-1">Text: <%= comment.content %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <!-- Add Comment Form -->
+  <div class="card mt-4">
+    <div class="card-header">
+      <h4>Add a Comment:</h4>
+    </div>
+    <div class="card-body">
+      <%= render partial: "comments/form", locals: { comment: @comment } %>
+    </div>
+  </div>
 </div>

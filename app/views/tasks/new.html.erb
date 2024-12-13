@@ -1,3 +1,8 @@
-<h1> Crear nueva tarea</h1>
-
-<%= render partial: "form", locals: {task: @task}%>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Create New Task</h1>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <%= render partial: "form", locals: { task: @task } %>
+    </div>
+  </div>
+</div>

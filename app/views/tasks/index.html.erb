@@ -1,12 +1,36 @@
-<% @tasks.each do | task | %>
-  <ol>
-    <li>
-      <div>
-        <h1><%= task.title %></h1>
-        <%= link_to "Edit", edit_task_path(task) %>
-        <p><%= task.description %></p>
-        <p><%= task.is_done? %></p>
-      </div>
-    </li>
-  </ol>
-<% end %>
+<div class = "container my-4">
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <h1 class="card-title">Tareas</h1>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h2>Lista de Tareas</h2>
+    </div>
+    <ul class="list-group list-group-flush">
+      <!-- Iterate through items (example: tasks or other objects) -->
+      <% @tasks.each do |task| %>
+        <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="mb-1">Title: <%= task.title %></h5>
+            <p class="mb-1">Description: <%= task.description %></p>
+            <p class="mb-1">
+              <strong>Estado:</strong>
+              <% if task.is_done %>
+              <span class="badge badge-success">Completado</span>
+              <% else %>
+              <span class="badge badge-danger">Pendiente</span>
+              <% end %>
+
+            </p>
+          </div>
+          <!-- Edit Button -->
+          <a href="<%= edit_task_path(task) %>" class="btn btn-primary btn-sm">Edit</a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

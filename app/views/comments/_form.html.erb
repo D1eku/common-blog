@@ -1,11 +1,11 @@
-<%= form_with model: @comment do |form| %>
+<%= form_with(model: [@task, Comment.new],local: true) do |form| %>
   <div>
     <h4>
       <%= form.label :creator, "Creator" %>
     </h4>
     <%= form.text_field :creator %>
     <p>
-      <%= form.label :content, "Description" %>
+      <%= form.label :content, "Comment description" %>
     </p>
     <%= form.text_area :content %>
   </div>

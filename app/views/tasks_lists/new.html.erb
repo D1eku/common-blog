@@ -1,0 +1,18 @@
+<% if @tasks_list.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>Errors:</h4>
+    <ul>
+      <% @tasks_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="container ">
+  <h1 class="text-center ">Create New Task</h1>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <%= render 'form', tasks_list: @tasks_list %>
+    </div>
+  </div>
+</div>

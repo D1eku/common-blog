@@ -1,0 +1,38 @@
+<%= form_with model: tasks_list, class: "needs-validation", local: true do |form| %>
+  <!-- Campo para el nombre de la lista -->
+  <div class="mb-3">
+    <%= form.label :name, "Tasks List Name", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter tasks list name" %>
+  </div>
+
+  <hr>
+
+  <!-- Campo de tareas dinámicas -->
+  <h3 class="mb-3">Tasks</h3>
+  <div id="tasks-container">
+    <%= form.fields_for :tasks do |task_form| %>
+      <div class="task-item mb-3">
+        <div class="mb-3">
+          <%= task_form.label :title, "Task Title", class: "form-label" %>
+          <%= task_form.text_field :title, class: "form-control", placeholder: "Task title" %>
+        </div>
+        <div class="mb-3">
+          <%= task_form.label :description, "Task Description", class: "form-label" %>
+          <%= task_form.text_area :description, class: "form-control", placeholder: "Task description" %>
+        </div>
+        <button type="button" class="btn btn-danger btn-sm remove-task">Remove Task</button>
+        <hr>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Botón dinámico de agregar tarea -->
+  <div class="d-grid mb-3">
+    <button type="button" id="add-task" class="btn btn-secondary">Add Task</button>
+  </div>
+
+  <!-- Botón de guardar -->
+  <div class="d-grid">
+    <%= form.submit "Save Tasks List", class: "btn btn-primary btn-lg" %>
+  </div>
+<% end %>

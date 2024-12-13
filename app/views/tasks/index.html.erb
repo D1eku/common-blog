@@ -14,7 +14,7 @@
       <% @tasks.each do |task| %>
         <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
           <div>
-            <h5 class="mb-1">Title: <%= task.title %></h5>
+            <h5 class="mb-1">Title: <%= link_to task.title, task_path(task) %></h5>
             <p class="mb-1">Description: <%= task.description %></p>
             <p class="mb-1">
               <strong>Estado:</strong>
@@ -23,7 +23,6 @@
               <% else %>
               <span class="badge badge-danger">Pendiente</span>
               <% end %>
-
             </p>
           </div>
           <!-- Edit Button -->

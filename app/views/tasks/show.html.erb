@@ -17,8 +17,13 @@
     <ul class="list-group list-group-flush">
       <% @comments.each do |comment| %>
         <li class="list-group-item">
-          <h5 class="mb-1">Author: <%= comment.creator %></h5>
-          <p class="mb-1">Text: <%= comment.content %></p>
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="mb-1">Author: <%= comment.creator %></h5>
+            <%= button_to task_comment_path(@task, comment), method: :delete, data: { turbo_confirm: "¿Are you sure?" }, class: "btn btn-danger btn-sm" do %>
+              <i class="bi bi-trash"></i>
+            <% end %>
+          </div>
+          <p class="mb-1 mt-2"><%= comment.content %></p>
         </li>
       <% end %>
     </ul>

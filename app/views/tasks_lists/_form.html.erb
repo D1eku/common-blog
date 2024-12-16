@@ -9,7 +9,7 @@
 
   <!-- Campo de tareas dinámicas -->
   <h3 class="mb-3">Tasks</h3>
-  <div id="tasks-container">
+  <div data-controller="tasks-list-form" id="tasks-container">
     <%= form.fields_for :tasks do |task_form| %>
       <div class="task-item mb-3">
         <div class="mb-3">

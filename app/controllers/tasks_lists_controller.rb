@@ -8,6 +8,7 @@ class TasksListsController < ApplicationController
 
   def show
     @tasks = @tasks_list.tasks
+    @user_creator = @tasks_list.user
   end
 
   def new
@@ -17,7 +18,6 @@ class TasksListsController < ApplicationController
 
   def create
     @tasks_list = current_user.tasks_lists.build(tasks_list_params)
-    puts @tasks_list.tasks.inspect
     @tasks_list.tasks.each do |task|
       task.is_done = false unless task.is_done.present?
     end
@@ -33,8 +33,18 @@ class TasksListsController < ApplicationController
   end
 
   def update
+    puts "LALALALLALA": params
+    @tasks_list = TasksList.find(params[:id])
+
+    if params[:tasks]
+      params[:tasks].each do |task_id, task_attributes|
+        task = @tasks_list.tasks.find(task_id)
+        task.update(is_done: task_attributes[:is_done])
+      end
+    end
+
     if @tasks_list.update(tasks_list_params)
-      redirect_to tasks_list_path(@tasks_list), notice: 'Lista actualizada exitosamente.'
+      redirect_to tasks_list_path(@tasks_list), notice: 'Tasks List and associated tasks updated successfully.'
     else
       render :edit, status: :unprocessable_entity
     end

@@ -1,10 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const tasksContainer = document.getElementById("tasks-container"); // Contenedor de tareas
-    const addTaskButton = document.getElementById("add-task"); // Botón de "Add Task"
-    let taskIndex = tasksContainer.children.length; // Contador de tareas inicializado al número de campos existentes
+import { Controller } from "@hotwired/stimulus"
 
-    // Función para crear una nueva tarea dinámica
-    const createTaskTemplate = (index) => {
+// Connects to data-controller="tasks-list-form"
+export default class extends Controller {
+  connect() {
+    console.log("Tasks List Form Controller connected")
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const tasksContainer = document.getElementById("tasks-container"); // Contenedor de tareas
+      const addTaskButton = document.getElementById("add-task"); // Botón de "Add Task"
+      let taskIndex = tasksContainer.children.length; // Contador de tareas inicializado al número de campos existentes
+
+      // Función para crear una nueva tarea dinámica
+      const createTaskTemplate = (index) => {
         return `
       <div class="task-item mb-3">
         <div class="mb-3">
@@ -19,20 +26,22 @@ document.addEventListener("DOMContentLoaded", () => {
         <hr>
       </div>
     `;
-    };
+      };
 
-    // Evento para agregar una nueva tarea
-    addTaskButton.addEventListener("click", () => {
+      // Evento para agregar una nueva tarea
+      addTaskButton.addEventListener("click", () => {
         const taskTemplate = createTaskTemplate(taskIndex); // Crea la plantilla de tarea
         tasksContainer.insertAdjacentHTML("beforeend", taskTemplate); // Inserta el HTML al contenedor
         taskIndex++; // Incrementa el índice
-    });
+      });
 
-    // Evento delegado para eliminar una tarea dinámica
-    tasksContainer.addEventListener("click", (event) => {
+      // Evento delegado para eliminar una tarea dinámica
+      tasksContainer.addEventListener("click", (event) => {
         if (event.target.classList.contains("remove-task")) {
-            const taskItem = event.target.closest(".task-item");
-            tasksContainer.removeChild(taskItem); // Elimina el HTML de la tarea
+          const taskItem = event.target.closest(".task-item");
+          tasksContainer.removeChild(taskItem); // Elimina el HTML de la tarea
         }
+      });
     });
-});
+  }
+}

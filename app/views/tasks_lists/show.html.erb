@@ -1,0 +1,36 @@
+<!-- Main Content -->
+<div class="container my-4">
+  <!-- Title Section -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title "><strong><%= @tasks_list.name %></strong></h3>
+      <h5 class="card-title">Author: <%= @user_creator.email %></h5>
+    </div>
+  </div>
+  <!-- Tasks Section -->
+  <div class="card">
+
+    <%= form_with model: @tasks_list, url: tasks_list_path(@tasks_list), method: :patch, local: true do |f| %>
+      <ul class="list-group list-group-flush">
+        <% @tasks_list.tasks.each do |task| %>
+          <li class="list-group-item">
+            <!-- Checkbox for each task -->
+            <div class="form-check d-flex align-items-center">
+              <%=
+                check_box_tag "tasks[#{task.id}][is_done]",
+                              true, task.is_done,
+                              class: "form-check-input me-2",
+                              id: "task_is_done_#{task.id}"
+              %>
+              <%= label_tag "task_is_done_#{task.id}", task.title, class: "form-check-label" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+      <!-- Botón de guardar -->
+      <div class="d-grid">
+        <%= f.submit "Save Tasks List", class: "btn btn-primary btn-sm" %>
+      </div>
+    <% end %>
+  </div>
+</div>
